@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" id="iphone-viewport" content="minimum-scale=1.0, maximum-scale=1.0, width=device-width" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link rel="stylesheet" href="spinningwheel.css" type="text/css" media="all" />
+    <script type="text/javascript" src="spinningwheel-min.js?v=1.4"></script>
+
+    <title>Spinning Wheel for iPhone/iPod touch</title>
+
+    <script type="text/javascript">
+
+        function openBirthDate() {
+
+            var months = {2: "东城区", 3: "西城区", 4: "朝阳区", 5: "丰台区", 6: "石景山区", 7: "海淀区", 8: "门头沟区", 9: "房山区", 10: "通州区"};
+
+            SpinningWheel.addSlot(months, '',7);
+            SpinningWheel.addSlot({1:"管辖区"}, '',7);
+
+            SpinningWheel.setCancelAction(cancel);
+            SpinningWheel.setDoneAction(done);
+
+            SpinningWheel.open();
+        }
+
+        function done() {
+            var results = SpinningWheel.getSelectedValues();
+            document.getElementById('result').innerHTML = 'values: ' + results.values.join(' ') + '<br />keys: ' + results.keys.join(', ');
+        }
+
+        function cancel() {
+            document.getElementById('result').innerHTML = 'cancelled!';
+        }
+
+        window.addEventListener('touchend',getResult);
+        window.addEventListener('load', function(){ setTimeout(function(){ window.scrollTo(0,0); }, 100); }, true);
+        function getResult(e) {
+            var key = SpinningWheel.getSelectedValues().keys[0];
+            var result = SpinningWheel.getSelectedValues().values[0];
+            if(key){
+                var months = {2: "东城区", 3: "西城区", 4: "朝阳区", 5: "丰台区", 6: "石景山区", 7: "海淀区", 8: "门头沟区", 9: "房山区", 10: "通州区"};
+                SpinningWheel.addSlot(months, '',7);
+            }
+
+        }
+    </script>
+
+
+    <style type="text/css">
+        body { text-align:center; font-family:helvetica; }
+        button { font-size:16px; }
+        #result { margin:10px; background:#aaa; -webkit-border-radius:8px; padding:8px; font-size:18px; }
+    </style>
+
+</head>
+
+<body>
+<p>Spinning Wheel slot machine alike widget for iPhone and iPod touch.
+    This demo works only on the simulator and the real devices, it does not work on any other browser.</p>
+<button onclick="openBirthDate()">birth date</button>
+<button onclick="openWeight()">weight</button>
+<button onclick="openOneSlot()">1 slot</button>
+<p id="result">results</p>
+<p><a href="http://cubiq.org/spinning-wheel-on-webkit-for-iphone-ipod-touch/11">Read the related article on cubiq.org</a></p>
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+this text is here for the sole purpose of making the page longer
+</body>
+
+</html>
